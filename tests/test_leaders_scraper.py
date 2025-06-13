@@ -40,7 +40,6 @@ def test_get_countries(mock_get: Mock):
 # get_leaders(country) method from WikipediaScraper
 # ================================================
 
-
 @patch("src.leaders_scraper.requests.Session.get")
 def test_get_leaders_valid_country(mock_get: Mock):
     """Test that get_leaders returns a list of leaders for a valid country code."""

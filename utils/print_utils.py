@@ -3,7 +3,7 @@ from enum import Enum
 
 
 class Color(Enum):
-    """ Enum for text colors """
+    """Enum for text colors"""
     GREEN = "\033[92m"
     BLUE = "\033[94m"
     RED = "\033[91m"
@@ -15,7 +15,7 @@ class Color(Enum):
 
 
 class BgColor(Enum):
-    """ Enum for background colors """
+    """Enum for background colors"""
     GREEN = "\033[42m"
     BLUE = "\033[44m"
     RED = "\033[41m"
@@ -27,12 +27,12 @@ class BgColor(Enum):
 
 
 class PrintUtils:
-    """ Utility class for printing text with colors """
+    """Utility class for printing text with colors"""
 
     @staticmethod
     def print_color(text: str, color: Color) -> None:
         """
-        Prints text in the given color using the Color Enum.
+        Print text in the given color using the Color Enum.
 
         :param text: The text to print.
         :param color: The color from the Color Enum.
@@ -42,7 +42,7 @@ class PrintUtils:
     @staticmethod
     def print_bg_color(text: str, bg_color: BgColor) -> None:
         """
-        Prints text with the given background color, adjusting text color for contrast.
+        Print text with the given background color, adjusting text color for contrast.
 
         :param text: The text to print.
         :param bg_color: The background color from the BgColor Enum.
@@ -66,4 +66,3 @@ class PrintUtils:
             bg_color.value + text_color + text + "\033[0m",
             flush=True
         )  # Reset formatting at the end
-
