@@ -1,0 +1,72 @@
+{
+  "us": [
+    {
+      "id": "Q23",
+      "first_name": "George",
+      "last_name": "Washington",
+      "birth_date": "1732-02-22",
+      "death_date": "1799-12-14",
+      "place_of_birth": "Westmoreland County",
+      "wikipedia_url": "https://en.wikipedia.org/wiki/George_Washington",
+      "start_mandate": "1789-04-30",
+      "end_mandate": "1797-03-04",
+      "summary": "George Washington(February 22, 1732 [O.S.February 11, 1731][a]–December 14, 1799) was aFounding Fatherand the firstpresident of the United States, serving from 1789 to 1797. As commander of theContinental Army, Washington ledPatriotforces to victory in theAmerican Revolutionary Waragainst theBritish Empire. He is commonly known as theFather of the Nationfor his role in bringing aboutAmerican independence."
+    }
+  ],
+  "fr": [
+    {
+      "id": "Q157",
+      "first_name": "François",
+      "last_name": "Hollande",
+      "birth_date": "1954-08-12",
+      "death_date": null,
+      "place_of_birth": "Rouen",
+      "wikipedia_url": "https://fr.wikipedia.org/wiki/Fran%C3%A7ois_Hollande",
+      "start_mandate": "2012-05-15",
+      "end_mandate": "2017-05-14",
+      "summary": "François Hollande[fʁɑ̃swaɔlɑ̃d][n 3]Écouterⓘ, né le12 août 1954àRouen(Seine-Inférieure), est unhaut fonctionnaireethomme d'Étatfrançais. Il estprésident de la République françaisedu15 mai 2012au14 mai 2017."
+    }
+  ],
+  "ru": [
+    {
+      "id": "Q7747",
+      "first_name": "Vladimir",
+      "last_name": "Putin",
+      "birth_date": "1952-10-07",
+      "death_date": null,
+      "place_of_birth": "Saint Petersburg",
+      "wikipedia_url": "https://ru.wikipedia.org/wiki/%D0%9F%D1%83%D1%82%D0%B8%D0%BD,_%D0%92%D0%BB%D0%B0%D0%B4%D0%B8%D0%BC%D0%B8%D1%80_%D0%92%D0%BB%D0%B0%D0%B4%D0%B8%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B8%D1%87",
+      "start_mandate": "2000-05-07",
+      "end_mandate": "2008-05-07",
+      "summary": "Влади́мир Влади́мирович Пу́тин(род.7 октября1952,Ленинград,СССР) —российскийгосударственныйиполитическийдеятель. Действующийпрезидент Российской Федерации, председательГосударственного Совета Российской ФедерациииСовета Безопасности Российской Федерации;Верховный главнокомандующий Вооружёнными силами Российской Федерациис 7 мая 2012 года. Ранее занимал должность президента с 7 мая 2000 по 7 мая 2008 года, также в 1999—2000 и 2008—2012 годах занимал должностьпредседателя правительства Российской Федерации. Фактически руководит Россией, согласно разным оценкам, с 1999или с 2000 года. В сентябре 2017 года Путин стал самым долго правящимроссийским лидеромпослеИосифа Сталина, а после окончанияпятого президентского срокастанет таковым со времёнЕкатерины II."
+    }
+  ],
+  "ma": [
+    {
+      "id": "Q57553",
+      "first_name": "Mohammed",
+      "last_name": "None",
+      "birth_date": "1963-08-21",
+      "death_date": null,
+      "place_of_birth": "Rabat",
+      "wikipedia_url": "https://ar.wikipedia.org/wiki/%D9%85%D8%AD%D9%85%D8%AF_%D8%A7%D9%84%D8%B3%D8%A7%D8%AF%D8%B3_%D8%A8%D9%86_%D8%A7%D9%84%D8%AD%D8%B3%D9%86",
+      "start_mandate": "1999-07-23",
+      "end_mandate": null,
+      "summary": "مُحمد السادس بن الحسن الثاني العلوي(مواليد 21 أغسطس 1963) هو ملك المملكة المغربية منذ عام 1999 والملك الثالث والعشرون للمغرب منسلالة العلويين الفيلاليين، تولى الحكم خلفًا لوالده الملكالحسن الثانيبعد وفاته، وبويع ملكًا يوم الجمعة 9 ربيع الثاني سنة 1420 هـ الموافق 23 يوليو 1999 بالقصر الملكيبالرباط."
+    }
+  ],
+  "be": [
+    {
+      "id": "Q12978",
+      "first_name": "Guy",
+      "last_name": "Verhofstadt",
+      "birth_date": "1953-04-11",
+      "death_date": null,
+      "place_of_birth": "Dendermonde",
+      "wikipedia_url": "https://nl.wikipedia.org/wiki/Guy_Verhofstadt",
+      "start_mandate": "1999-07-12",
+      "end_mandate": "2008-03-20",
+      "summary": "Guy Maurice Marie-Louise Verhofstadt(uitspraakⓘ) (Dendermonde,11 april1953) is eenBelgischpoliticusvoor deOpen Vlaamse Liberalen en Democraten(Open Vld). Hij waspremier van Belgiëvan 12 juli 1999 tot 20 maart 2008 in drie regeringen. Hij beëindigde zijn actieve politieke carrière in hetEuropees Parlement, waar hij van 2009 tot 2019 fractieleider van deAlliantie van Liberalen en Democraten voor Europa(ALDE) was."
+    }
+  ]
+}

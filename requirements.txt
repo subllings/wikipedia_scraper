@@ -1,0 +1,9 @@
+# === Core dependencies ===
+requests==2.31.0                  # Send HTTP requests to APIs and websites
+beautifulsoup4==4.12.2            # Parse and extract data from HTML pages (used with requests)
+pandas==2.2.2                     # Work with structured data (DataFrames, CSV/JSON handling)
+multiprocessing-logging==0.3.0   # Enables logging with multiprocessing support
+
+# === Jupyter Notebook support ===
+notebook==7.2.0                   # Jupyter notebook server (web interface)
+ipykernel==6.29.4                 # Allows .venv to be used as a Jupyter kernel
