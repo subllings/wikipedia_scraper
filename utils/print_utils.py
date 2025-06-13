@@ -1,4 +1,6 @@
+"""Utility module to print colored text and background colors in the terminal."""
 from enum import Enum
+
 
 class Color(Enum):
     """ Enum for text colors """
@@ -11,6 +13,7 @@ class Color(Enum):
     WHITE = "\033[97m"
     BLACK = "\033[90m"
 
+
 class BgColor(Enum):
     """ Enum for background colors """
     GREEN = "\033[42m"
@@ -21,6 +24,7 @@ class BgColor(Enum):
     MAGENTA = "\033[45m"
     WHITE = "\033[47m"
     BLACK = "\033[40m"
+
 
 class PrintUtils:
     """ Utility class for printing text with colors """
@@ -43,7 +47,8 @@ class PrintUtils:
         :param text: The text to print.
         :param bg_color: The background color from the BgColor Enum.
         """
-        # Define contrast text colors: light text for dark backgrounds, dark text for light backgrounds
+        # Define contrast text colors: light text for dark backgrounds,
+        # dark text for light backgrounds
         contrast_colors = {
           BgColor.BLACK: Color.WHITE.value,
           BgColor.RED: Color.WHITE.value,
@@ -55,5 +60,11 @@ class PrintUtils:
           BgColor.WHITE: Color.BLACK.value
         }
 
-        text_color = contrast_colors.get(bg_color, "\033[0m")  # Default to normal if undefined
-        print(bg_color.value + text_color + text + "\033[0m", flush = True)  # Reset formatting at the end
+        # Default to normal if undefined
+        text_color = contrast_colors.get(bg_color, "\033[0m")
+        print(
+            bg_color.value + text_color + text + "\033[0m",
+            flush=True
+        )  # Reset formatting at the end
+
+

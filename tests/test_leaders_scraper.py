@@ -9,11 +9,9 @@ import pytest
 
 from src.leaders_scraper import WikipediaScraper
 
-"""
-===============================================
-Get get_countries method from WikipediaScraper
-===============================================
-"""
+# ================================================
+# Get get_countries method from WikipediaScraper
+# ================================================
 
 
 @patch("requests.Session.get")
@@ -38,11 +36,9 @@ def test_get_countries(mock_get: Mock):
     assert "fr" in result
 
 
-"""
-===============================================
-get_leaders(country) method from WikipediaScraper
-===============================================
-"""
+# ================================================
+# get_leaders(country) method from WikipediaScraper
+# ================================================
 
 
 @patch("src.leaders_scraper.requests.Session.get")
@@ -82,11 +78,9 @@ def test_get_leaders_invalid_json(mock_get: Mock):
         scraper.get_leaders("fr")
 
 
-"""
-===============================================
-get_first_paragraph(url) method from WikipediaScraper
-===============================================
-"""
+# ===============================================
+# get_first_paragraph(url) method from WikipediaScraper
+# ===============================================
 
 
 @patch("requests.Session.get")
@@ -117,11 +111,9 @@ def test_get_first_paragraph_empty_page(mock_get: Mock):
     assert paragraph == ""
 
 
-"""
-===============================================
-enrich_leader method from WikipediaScraper
-===============================================
-"""
+# ===============================================
+# enrich_leader method from WikipediaScraper
+# ===============================================
 
 
 @patch.object(WikipediaScraper, "get_first_paragraph")
@@ -164,11 +156,9 @@ def test_enrich_leader_empty_page(mock_get_para: Mock):
     assert result["summary"] == ""
 
 
-"""
-===============================================
-fetch_leaders() method test (replaces scrape_all)
-===============================================
-"""
+# ===============================================
+# fetch_leaders() method test (replaces scrape_all)
+# ===============================================
 
 
 @patch.object(WikipediaScraper, "get_countries", return_value=["fr"])

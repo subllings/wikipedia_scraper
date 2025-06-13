@@ -53,7 +53,21 @@ mypy --explicit-package-bases src/ tests/ || print_error "mypy found type issues
 # === Run py_compile to check for syntax errors ===
 echo ""
 print_blue "Checking syntax with py_compile..."
-find src/ tests/ -name "*.py" -exec python -m py_compile {} \; || print_error "Syntax errors found"
+#find src/ tests/ -name "*.py" -exec python -m py_compile {} \; || print_error "Syntax errors found"
+for file in $(git ls-files '*.py'); do
+    python -m py_compile "$file" || print_error "Syntax error in $file"
+done
+
+# === Run pylint to catch semantic issues ===
+echo ""
+print_blue "Running pylint (semantic checks)..."
+#pylint src/ tests/ || print_error "pylint found semantic issues"
+#PYTHONPATH=$(pwd)/src pylint src/ tests/ || print_error "pylint found issues"
+#PYTHONPATH=$(pwd)/src:$(pwd)/utils pylint src/ tests/ || print_error "pylint found issues"
+PYTHONPATH=$(pwd) pylint src/ utils/ tests/ || print_error "pylint found issues"
+
+
+
 
 # === All checks passed ===
 echo ""
