@@ -22,5 +22,4 @@ flake8-docstrings==1.7.0         # flake8 plugin to validate docstrings
 # === Documentation generation ===
 pdoc==15.0.4                      # Generate HTML documentation from Python docstrings
 
-# === External type checker (install separately) ===
-# pyright==1.1.361               # Do NOT install with pip — use: npm install -g pyright
+

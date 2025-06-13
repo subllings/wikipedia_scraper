@@ -147,7 +147,24 @@ find src/ tests/ -name "*.py" -exec python -m py_compile {} \;
 
 ![picture 1](images/a7c4df6354b9b3e2076b1c225189c5d437f82ff7d66892511f62631cd9175fb4.png)  
 
-### 5. Pylance – Real-Time Static Analysis (VS Code)
+### 5. Pylint – Semantic and Structural Analysis
+
+Performs deep static code analysis to validate logic and structure, including:
+
+- Too many local variables
+- Unused arguments or imports
+- Poor naming conventions
+- Complexity and maintainability issues
+
+```bash
+pylint src/ tests/
+```
+
+- Pylint provides detailed feedback to improve code clarity, robustness, and readability.
+- Warnings like unused-argument can be silenced using # pylint: disable=unused-argument where appropriate (e.g., in @patch-decorated test functions).
+
+
+### 6. Pylance – Real-Time Static Analysis (VS Code)
 
 If you use **Visual Studio Code**, it's strongly recommended to enable the **Pylance** extension for fast, real-time type checking and code intelligence.
 
