@@ -81,6 +81,7 @@ class WikipediaScraper:
         response = self.session.get(self.country_endpoint, cookies=self.cookie)
         return response.json()
 
+
     def get_leaders(self, country: str):
         """
         Fetch the list of political leaders for a given country.
@@ -225,6 +226,54 @@ class WikipediaScraper:
             # comprehension
             return [self.enrich_leader(leader) for leader in leaders]
 
+    def _fetch_countries(self) -> List[str]:
+        """Récupère la liste des pays via l'API."""
+        return self.session.get(self.country_endpoint, cookies=self.cookie).json()
+
+    def _fetch_leaders_for_country(self, country: str) -> List[Dict[str, Any]]:
+        """Récupère la liste des leaders pour un pays donné."""
+        params = {"country": country}
+        res = self.session.get(self.leaders_endpoint, cookies=self.cookie, params=params)
+        return res.json()
+
+    def _enrich_and_log_leaders(self, country: str, leaders_data: List[Dict[str, Any]], limit_per_country: Optional[int], use_multithreading: bool) -> List[Dict[str, Any]]:
+        """Limite, enrichit et log les leaders pour un pays donné."""
+        if limit_per_country is not None:
+            leaders_data = leaders_data[:limit_per_country]
+        leaders_data = self.enrich_all_leaders(
+            leaders_data, use_multithreading=use_multithreading
+        )
+        if not leaders_data:
+            PrintUtils.print_color(
+                f">>> No leaders returned for country '{country}'",
+                Color.YELLOW,
+            )
+        else:
+            PrintUtils.print_color(
+                (
+                    f">>> Country '{country}' - {len(leaders_data)} "
+                    "leaders enriched."
+                ),
+                Color.CYAN,
+            )
+        return leaders_data
+
+    def _print_verbose_sample(self, leaders_per_country: Dict[str, List[Dict[str, Any]]]):
+        """Affiche un échantillon des leaders enrichis si verbose=True."""
+        for country, leaders in leaders_per_country.items():
+            PrintUtils.print_color(
+                (f">>> Country '{country}' - {len(leaders)} leaders enriched."),
+                Color.CYAN,
+            )
+            for leader in leaders:
+                summary = leader.get("summary", "")
+                url = leader.get("wikipedia_url", "")
+                first = leader.get("first_name", "")
+                last = leader.get("last_name", "")
+                name = (first + " " + last).strip() or "Unknown"
+                print(f"- {name}: {summary[:150]}...")
+                print(str(url) if url else "[No Wikipedia URL found]")
+
     def fetch_leaders(
         self,
         limit_per_country: Optional[int] = None,
@@ -243,70 +292,16 @@ class WikipediaScraper:
         - dict: mapping of country code to list of leader dictionaries
           (with Wikipedia summaries)
         """
-        # Fetch the list of countries using the API and store it as a list of
-        # country codes
-        countries = self.session.get(self.country_endpoint, cookies=self.cookie).json()
-
-        # Initialize a dictionary to hold leaders grouped by country
+        countries = self._fetch_countries()
         leaders_per_country: Dict[str, List[Dict[str, Any]]] = {}
-
-        # Loop through each country to fetch its leaders
         for country in countries:
-            # Set the country parameter for the API request
-            params = {"country": country}
-
-            # Fetch the list of leaders for the current country
-            res = self.session.get(
-                self.leaders_endpoint, cookies=self.cookie, params=params
+            leaders_data = self._fetch_leaders_for_country(country)
+            leaders_data = self._enrich_and_log_leaders(
+                country, leaders_data, limit_per_country, use_multithreading
             )
-            leaders_data = res.json()
-
-            # Optionally limit the number of leaders per country if a limit is
-            # specified
-            if limit_per_country is not None:
-                leaders_data = leaders_data[:limit_per_country]
-
-            # Enrich all leaders using multithreading if requested
-            leaders_data = self.enrich_all_leaders(
-                leaders_data, use_multithreading=use_multithreading
-            )
-
-            # Log conditionally if no leader was enriched
-            if not leaders_data:
-                PrintUtils.print_color(
-                    f">>> No leaders returned for country '{country}'",
-                    Color.YELLOW,
-                )
-            else:
-                PrintUtils.print_color(
-                    (
-                        f">>> Country '{country}' - {len(leaders_data)} "
-                        "leaders enriched."
-                    ),
-                    Color.CYAN,
-                )
-
-            # Store the enriched leader data in the dictionary
             leaders_per_country[country] = leaders_data
-
-        # If verbose is True, print a sample of the collected data
-        # for inspection
         if verbose:
-            for country, leaders in leaders_per_country.items():
-                PrintUtils.print_color(
-                    (f">>> Country '{country}' - {len(leaders)} " "leaders enriched."),
-                    Color.CYAN,
-                )
-                for leader in leaders:
-                    summary = leader.get("summary", "")
-                    url = leader.get("wikipedia_url", "")
-                    first = leader.get("first_name", "")
-                    last = leader.get("last_name", "")
-                    name = (first + " " + last).strip() or "Unknown"
-
-                    print(f"- {name}: {summary[:150]}...")
-                    print(str(url) if url else "[No Wikipedia URL found]")
-
+            self._print_verbose_sample(leaders_per_country)
         self.leaders_data = leaders_per_country
         return leaders_per_country  # type: ignore[reportUndefinedVariable]
 
