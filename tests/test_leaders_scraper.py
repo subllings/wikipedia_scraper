@@ -161,24 +161,23 @@ def test_enrich_leader_empty_page(mock_get_para: Mock):
 # ===============================================
 
 
-@patch.object(WikipediaScraper, "get_countries", return_value=["fr"])
-@patch.object(
-    WikipediaScraper,
-    "get_leaders",
-    return_value=[{"wikipedia_url": "http://wiki"}],
-)
 @patch.object(
     WikipediaScraper,
     "enrich_all_leaders",
     return_value=[{"wikipedia_url": "http://wiki", "summary": "bio"}],
 )
+@patch.object(
+    WikipediaScraper, "get_leaders", return_value=[{"wikipedia_url": "http://wiki"}]
+)
+@patch.object(WikipediaScraper, "get_countries", return_value=["fr"])
 def test_fetch_leaders_basic(
-    mock_enrich_all: Mock, mock_get_leaders: Mock, mock_get_countries: Mock
+    mock_get_countries: Mock, mock_get_leaders: Mock, mock_enrich_all: Mock
 ):
     """
     Test that fetch_leaders returns a dictionary with country codes as keys and
     enriched leader data.
     """
+    _ = mock_get_countries, mock_get_leaders, mock_enrich_all
     scraper = WikipediaScraper()
     result = scraper.fetch_leaders(limit_per_country=1, verbose=False)
     assert "fr" in result

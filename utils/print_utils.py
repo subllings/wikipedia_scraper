@@ -67,4 +67,3 @@ class PrintUtils:
             flush=True
         )  # Reset formatting at the end
 
-

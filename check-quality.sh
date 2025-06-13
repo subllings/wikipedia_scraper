@@ -61,10 +61,9 @@ done
 # === Run pylint to catch semantic issues ===
 echo ""
 print_blue "Running pylint (semantic checks)..."
-#pylint src/ tests/ || print_error "pylint found semantic issues"
-#PYTHONPATH=$(pwd)/src pylint src/ tests/ || print_error "pylint found issues"
-#PYTHONPATH=$(pwd)/src:$(pwd)/utils pylint src/ tests/ || print_error "pylint found issues"
-PYTHONPATH=$(pwd) pylint src/ utils/ tests/ || print_error "pylint found issues"
+#PYTHONPATH=$(pwd) pylint src/ utils/ tests/ || print_error "pylint found issues"
+PYTHONPATH=$(pwd) pylint --rcfile=setup.cfg src/ utils/ tests/ || print_error "pylint found issues"
+
 
 
 
