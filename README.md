@@ -145,9 +145,31 @@ find src/ tests/ -name "*.py" -exec python -m py_compile {} \;
 
 - Ensures that all Python files are syntactically valid.
 
+![picture 1](images/a7c4df6354b9b3e2076b1c225189c5d437f82ff7d66892511f62631cd9175fb4.png)  
 
+### 5. Pylance – Real-Time Static Analysis (VS Code)
 
+If you use **Visual Studio Code**, it's strongly recommended to enable the **Pylance** extension for fast, real-time type checking and code intelligence.
 
+- Provides IntelliSense, auto-imports, type inference, and error highlighting.
+- Uses the [Pyright](https://github.com/microsoft/pyright) engine for static type checking.
+- Works best when `pyrightconfig.json` or type hints (`.pyi` or `typing`) are correctly configured.
+
+To install:
+1. Go to the **Extensions Marketplace** in VS Code.
+2. Search for `Pylance` and install it.
+3. Set it as your language server (should be automatic).
+
+```json
+// In your VS Code settings.json
+{
+    // Use Pylance for enhanced language features (optional)
+  "python.languageServer": "Pylance",
+ 
+  // Set type checking mode to off, basic, strict (optional)
+  "python.analysis.typeCheckingMode": "strict"  
+}
+```
 
 ## Unit Tests
 
@@ -166,6 +188,10 @@ Use the automated script:
 chmod +x run-tests.sh
 ./run-tests.sh
 ```
+
+![picture 3](images/2788ae34a8be3d4a6198eff1380e7cae0f5b5efc7dbdc2f254744818b20507d9.png)  
+
+
 
 ## Branch Strategy
 

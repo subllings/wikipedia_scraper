@@ -6,7 +6,7 @@ from utils.print_utils import PrintUtils, BgColor, Color
 from utils.output_format import OutputFormat
 
 
-def run_scraper(use_multithreading=False, output_format=OutputFormat.JSON):
+def run_scraper(use_multithreading: bool = False, output_format: OutputFormat = OutputFormat.JSON):
     """
     Run the Wikipedia scraping pipeline with optional multithreading.
 
