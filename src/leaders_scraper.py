@@ -81,7 +81,6 @@ class WikipediaScraper:
         response = self.session.get(self.country_endpoint, cookies=self.cookie)
         return response.json()
 
-
     def get_leaders(self, country: str):
         """
         Fetch the list of political leaders for a given country.
@@ -227,17 +226,25 @@ class WikipediaScraper:
             return [self.enrich_leader(leader) for leader in leaders]
 
     def _fetch_countries(self) -> List[str]:
-        """Récupère la liste des pays via l'API."""
+        """Fetch the list of countries via the API."""
         return self.session.get(self.country_endpoint, cookies=self.cookie).json()
 
     def _fetch_leaders_for_country(self, country: str) -> List[Dict[str, Any]]:
-        """Récupère la liste des leaders pour un pays donné."""
+        """Fetch the list of leaders for a given country."""
         params = {"country": country}
-        res = self.session.get(self.leaders_endpoint, cookies=self.cookie, params=params)
+        res = self.session.get(
+            self.leaders_endpoint, cookies=self.cookie, params=params
+        )
         return res.json()
 
-    def _enrich_and_log_leaders(self, country: str, leaders_data: List[Dict[str, Any]], limit_per_country: Optional[int], use_multithreading: bool) -> List[Dict[str, Any]]:
-        """Limite, enrichit et log les leaders pour un pays donné."""
+    def _enrich_and_log_leaders(
+        self,
+        country: str,
+        leaders_data: List[Dict[str, Any]],
+        limit_per_country: Optional[int],
+        use_multithreading: bool,
+    ) -> List[Dict[str, Any]]:
+        """Limits, enriches and logs leaders for a given country."""
         if limit_per_country is not None:
             leaders_data = leaders_data[:limit_per_country]
         leaders_data = self.enrich_all_leaders(
@@ -250,16 +257,15 @@ class WikipediaScraper:
             )
         else:
             PrintUtils.print_color(
-                (
-                    f">>> Country '{country}' - {len(leaders_data)} "
-                    "leaders enriched."
-                ),
+                (f">>> Country '{country}' - {len(leaders_data)} " "leaders enriched."),
                 Color.CYAN,
             )
         return leaders_data
 
-    def _print_verbose_sample(self, leaders_per_country: Dict[str, List[Dict[str, Any]]]):
-        """Affiche un échantillon des leaders enrichis si verbose=True."""
+    def _print_verbose_sample(
+        self, leaders_per_country: Dict[str, List[Dict[str, Any]]]
+    ):
+        """Display a sample of leaders enriched if verbose=True."""
         for country, leaders in leaders_per_country.items():
             PrintUtils.print_color(
                 (f">>> Country '{country}' - {len(leaders)} leaders enriched."),
